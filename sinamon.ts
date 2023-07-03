@@ -41,6 +41,19 @@ namespace sinamon {
         }
     }
 
+    //% color="#808080" weight=82 block="back |%step| step" group="1 sinamon"
+    //% step.min=0 step.max=50 
+    export function back(step: number): void {
+        Lmoter = 0
+        Rmoter = 0
+        回転数(step*-1, step*-1)
+        左タイヤ後ろ()
+        右タイヤ後ろ()
+        while (Lmoter == 0 || Rmoter == 0) {
+            basic.pause(100)
+        }
+    }
+
     //% color="#808080" weight=80 block="right |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function right(step: number): void {
