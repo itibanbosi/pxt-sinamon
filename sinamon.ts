@@ -50,8 +50,8 @@ namespace sinamon {
     //% step.min=0 step.max=50 
     export function left(step: number): void {
         回転数(step*-1, step)
-        左タイヤ前()
-        右タイヤ後ろ()
+        左タイヤ後ろ()
+        右タイヤ前()
         basic.pause(4000)
     }
 
