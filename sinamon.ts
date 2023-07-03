@@ -28,7 +28,7 @@ namespace sinamon {
 
     //% color="#808080" weight=82 blockId=forward block="前へ |FR| step" group="1 sinamon"
     //% FR.min=0 FR.max=50 
-    export function forward(FR: number) {
+    export function forward(FR: number):void {
         回転数(FR, FR)
         左タイヤ前()
         右タイヤ前()
