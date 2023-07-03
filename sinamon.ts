@@ -26,7 +26,7 @@ namespace sinamon {
         basic.pause(second * 1000);
     }
 
-    //% color="#808080" weight=82 blockId=forward block="前へ |FR|step="1 sinamon"
+    //% color="#808080" weight=82 blockId=forward block="前へ |FR| step" group="1 sinamon"
     //% FR.min=0 FR.max=50 
     export function forward(FR: number) {
         回転数(FR, FR)
