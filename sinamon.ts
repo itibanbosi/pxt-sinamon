@@ -7,6 +7,8 @@ let R_power = 0
 let 目標P1 = 0
 let P1count = 0
 let R_bit = 0
+let Lmoter = 0
+let Rmoter = 0
 led.enable(false)
 pins.setEvents(DigitalPin.P6, PinEventType.Edge)
 pins.setEvents(DigitalPin.P7, PinEventType.Edge)
@@ -29,19 +31,27 @@ namespace sinamon {
     //% color="#808080" weight=82 block="forward |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function forward(step: number):void {
+        Lmoter = 0
+        Rmoter = 0
         回転数(step, step)
         左タイヤ前()
         右タイヤ前()
-        basic.pause(5000)
+        while (Lmoter == 0 || Rmoter == 0) {
+            basic.pause(100)
+        }
     }
 
     //% color="#808080" weight=80 block="right |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function right(step: number): void {
+        Lmoter = 0
+        Rmoter = 0
         回転数(step, step * -1)
         左タイヤ前()
         右タイヤ後ろ()
-        basic.pause(4000)
+        while (Lmoter == 0 || Rmoter == 0) {
+            basic.pause(100)
+        }
     }
 
 
@@ -49,10 +59,14 @@ namespace sinamon {
     //% color="#808080" weight=80 block="left |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function left(step: number): void {
+        Lmoter = 0
+        Rmoter = 0
         回転数(step*-1, step)
         左タイヤ後ろ()
         右タイヤ前()
-        basic.pause(4000)
+        while (Lmoter == 0 || Rmoter == 0) {
+            basic.pause(100)
+        }
     }
 
 
