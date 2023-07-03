@@ -26,34 +26,36 @@ namespace sinamon {
         basic.pause(second * 1000);
     }
 
-    //% color="#808080" weight=82 block="forward |%FR| step" group="1 sinamon"
-    //% FR.min=0 FR.max=50 
-    export function forward(FR: number):void {
-        回転数(FR, FR)
+    //% color="#808080" weight=82 block="forward |%step| step" group="1 sinamon"
+    //% step.min=0 step.max=50 
+    export function forward(step: number):void {
+        回転数(step, step)
         左タイヤ前()
         右タイヤ前()
         basic.pause(5000)
     }
 
-
-
-
-
-
-
-    function R_rotation(数値: number) {
-        回転数(数値, 数値 * -1)
+    //% color="#808080" weight=80 block="right |%step| step" group="1 sinamon"
+    //% step.min=0 step.max=50 
+    export function right(step: number): void {
+        回転数(step, step * -1)
         左タイヤ前()
         右タイヤ後ろ()
         basic.pause(4000)
     }
 
-    function L_rotation(数値: number) {
-        回転数(数値 * -1, 数値)
-        左タイヤ後ろ()
-        右タイヤ前()
+
+
+    //% color="#808080" weight=80 block="left |%step| step" group="1 sinamon"
+    //% step.min=0 step.max=50 
+    export function left(step: number): void {
+        回転数(step*-1, step)
+        左タイヤ前()
+        右タイヤ後ろ()
         basic.pause(4000)
     }
+
+
 
     function 回転数(数値: number, 数値2: number) {
         P1count = 0
