@@ -144,6 +144,7 @@ namespace sinamon {
                 }
             } else {
                 右タイヤ停止()
+                Rmoter = 1
             }
         }
     })
@@ -180,6 +181,7 @@ namespace sinamon {
                 }
             } else {
                 左タイヤ停止()
+                Lmoter = 1
             }
         }
     })
