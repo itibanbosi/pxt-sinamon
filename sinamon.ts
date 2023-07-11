@@ -134,7 +134,7 @@ namespace sinamon {
             P1count += 1
             serial.writeValue("R", P1count)
             if (P1count < Math.abs(目標P1)) {
-                if (P1count + 10 < Math.abs(目標P1)) {
+                if (P1count + 15 < Math.abs(目標P1)) {
                     R_power = 300
                     if (P0count > P1count) {
                         R_power = 100
@@ -171,7 +171,7 @@ namespace sinamon {
             P0count += 1
             serial.writeValue("L", P0count)
             if (P0count < Math.abs(目標P0)) {
-                if (P0count + 10 < Math.abs(目標P0)) {
+                if (P0count + 15 < Math.abs(目標P0)) {
                     L_Power = 300
                     if (P0count < P1count) {
                         L_Power = 100
