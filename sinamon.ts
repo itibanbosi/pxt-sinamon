@@ -548,13 +548,20 @@ namespace sinamon {
             ((envirobit.getBlue() > 100) && (envirobit.getLight() < 5000)) {
             color_value = 3
             }
-        if
-            ((envirobit.getGreen() > 100) && (envirobit.getLight() < 5000)) {
-            color_value = 2
-        }
-        if
-            ((envirobit.getRed() > 100) && (envirobit.getLight() < 5000)) {
-            color_value = 1
+        else {
+            if
+                ((envirobit.getGreen() > 100) && (envirobit.getLight() < 5000)) {
+                color_value = 2
+            }
+            else {
+                if
+                ((envirobit.getRed() > 100) && (envirobit.getLight() < 5000)) {
+                color_value = 1
+                }
+                else{
+                    color_value = 0
+                }
+            }
         }
         return color_value
     }
