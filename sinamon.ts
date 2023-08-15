@@ -1,10 +1,35 @@
-/* sinamon V0.1 1023/07/01 */
-let 目標P0 = 0
+/* sinamon V0.3 1023/07/27
+超音波センサ
+    Tri P14
+    Eco P10
+左・フォトリフレクター（B input)
+    P3
+右・フォトリフレクター(A input)
+    P4
+モータードライバ
+    INT1 P2
+    INT2 P13
+    INT3 P15
+    INT4 P16
+左ホイール・フォトセンサー(D input)
+    P7
+右ホイール・フォトセンサー(C input)
+    P6
+ネオピクセル用
+    P9
+あまり
+    P0, P8, 
+電圧検出
+    P1
+カラーセンサー
+    I2C
+*/
+let objectP0 = 0
 let L_bit = 0
 let L_Power = 0
 let P0count = 0
 let R_power = 0
-let 目標P1 = 0
+let objectP1 = 0
 let P1count = 0
 let R_bit = 0
 let Lmoter = 0
@@ -13,9 +38,10 @@ let noservo = 0
 led.enable(false)
 pins.setEvents(DigitalPin.P6, PinEventType.Edge)
 pins.setEvents(DigitalPin.P7, PinEventType.Edge)
-
-
-
+pins.setPull(DigitalPin.P10, PinPullMode.PullNone)
+pins.setPull(DigitalPin.P14, PinPullMode.PullNone)
+pins.setPull(DigitalPin.P4, PinPullMode.PullNone)
+pins.setPull(DigitalPin.P3, PinPullMode.PullNone)
 
 
 //% color="#ff4500" weight=94 
@@ -76,9 +102,9 @@ namespace sinamon {
         noservo = 1
         Lmoter = 0
         Rmoter = 0
-        回転数(step, step)
-        左タイヤ前()
-        右タイヤ前()
+        nunber_revolution(step, step)
+        L_forward()
+        R_forward()
         while (Lmoter == 0 || Rmoter == 0) {
             basic.pause(100)
         }
@@ -90,9 +116,9 @@ namespace sinamon {
         noservo = 1
         Lmoter = 0
         Rmoter = 0
-        回転数(step * -1, step * -1)
-        左タイヤ後ろ()
-        右タイヤ後ろ()
+        nunber_revolution(step * -1, step * -1)
+        L_backward()
+        R_backward()
         while (Lmoter == 0 || Rmoter == 0) {
             basic.pause(100)
         }
@@ -104,9 +130,9 @@ namespace sinamon {
         noservo = 1
         Lmoter = 0
         Rmoter = 0
-        回転数(step, step * -1)
-        左タイヤ前()
-        右タイヤ後ろ()
+        nunber_revolution(step, step * -1)
+        L_forward()
+        R_backward()
         while (Lmoter == 0 || Rmoter == 0) {
             basic.pause(100)
         }
@@ -120,9 +146,9 @@ namespace sinamon {
         noservo = 1
         Lmoter = 0
         Rmoter = 0
-        回転数(step * -1, step)
-        左タイヤ後ろ()
-        右タイヤ前()
+        nunber_revolution(step * -1, step)
+        L_backward()
+        R_forward()
         while (Lmoter == 0 || Rmoter == 0) {
             basic.pause(100)
         }
@@ -130,42 +156,42 @@ namespace sinamon {
 
 
 
-    function 回転数(数値: number, 数値2: number) {
+    function nunber_revolution(数値: number, 数値2: number) {
         P1count = 0
         P0count = 0
-        目標P0 = 数値
-        目標P1 = 数値2
+        objectP0 = 数値
+        objectP1 = 数値2
         R_power = 0
     }
 
 
-    function 右タイヤ前() {
+    function R_forward() {
         pins.analogWritePin(AnalogPin.P15, R_power)
         pins.digitalWritePin(DigitalPin.P16, 1)
     }
 
 
-    function 右タイヤ後ろ() {
+    function R_backward() {
         pins.digitalWritePin(DigitalPin.P15, 1)
         pins.analogWritePin(AnalogPin.P16, R_power)
     }
 
-    function 右タイヤ停止() {
+    function R_stop() {
         pins.digitalWritePin(DigitalPin.P15, 1)
         pins.digitalWritePin(DigitalPin.P16, 1)
     }
 
-    function 左タイヤ前() {
+    function L_forward() {
         pins.digitalWritePin(DigitalPin.P2, 1)
         pins.analogWritePin(AnalogPin.P13, L_Power)
     }
-    function 左タイヤ後ろ() {
+    function L_backward() {
         pins.analogWritePin(AnalogPin.P2, L_Power)
         pins.digitalWritePin(DigitalPin.P13, 1)
     }
 
 
-    function 左タイヤ停止() {
+    function L_stop() {
         pins.digitalWritePin(DigitalPin.P2, 1)
         pins.digitalWritePin(DigitalPin.P13, 1)
     }
@@ -179,30 +205,30 @@ namespace sinamon {
         if (R_bit == 1 && noservo == 1) {
             P1count += 1
             serial.writeValue("R", P1count)
-            if (P1count < Math.abs(目標P1)) {
-                if (P1count + 15 < Math.abs(目標P1)) {
+            if (P1count < Math.abs(objectP1)) {
+                if (P1count + 10 < Math.abs(objectP1)) {
                     R_power = 300
                     if (P0count > P1count) {
                         R_power = 100
                     }
-                    if (目標P1 == Math.abs(目標P1)) {
-                        右タイヤ前()
+                    if (objectP1 == Math.abs(objectP1)) {
+                        R_forward()
                     } else {
-                        右タイヤ後ろ()
+                        R_backward()
                     }
                 } else {
                     R_power = 550
                     if (P0count > P1count) {
                         R_power = 400
                     }
-                    if (目標P1 == Math.abs(目標P1)) {
-                        右タイヤ前()
+                    if (objectP1 == Math.abs(objectP1)) {
+                        R_forward()
                     } else {
-                        右タイヤ後ろ()
+                        R_backward()
                     }
                 }
             } else {
-                右タイヤ停止()
+                R_stop()
                 Rmoter = 1
             }
         }
@@ -216,30 +242,30 @@ namespace sinamon {
         if (L_bit == 1 && noservo == 1) {
             P0count += 1
             serial.writeValue("L", P0count)
-            if (P0count < Math.abs(目標P0)) {
-                if (P0count + 15 < Math.abs(目標P0)) {
+            if (P0count < Math.abs(objectP0)) {
+                if (P0count + 10 < Math.abs(objectP0)) {
                     L_Power = 300
                     if (P0count < P1count) {
                         L_Power = 100
                     }
-                    if (目標P0 == Math.abs(目標P0)) {
-                        左タイヤ前()
+                    if (objectP0 == Math.abs(objectP0)) {
+                        L_forward()
                     } else {
-                        左タイヤ後ろ()
+                        L_backward()
                     }
                 } else {
                     L_Power = 550
                     if (P0count < P1count) {
                         L_Power = 400
                     }
-                    if (目標P0 == Math.abs(目標P0)) {
-                        左タイヤ前()
+                    if (objectP0 == Math.abs(objectP0)) {
+                        L_forward()
                     } else {
-                        左タイヤ後ろ()
+                        L_backward()
                     }
                 }
             } else {
-                左タイヤ停止()
+                L_stop()
                 Lmoter = 1
             }
         }
@@ -249,50 +275,60 @@ namespace sinamon {
 
     //% color="#3943c6" weight=88 blockId=moving2
     //% block="Move |%sinkou_houkou|,power|%Power|" group="1 Basic movement"
-    //% Power.min=0 Power.max=255 Power.defl=120
+    //% Power.min=0 Power.max=100 Power.defl=100
     export function car_derection(sinkou_houkou: direction, Power: number): void {
-        let noservo = 0
+        objectP0 = 0
+        L_bit = 0
+        L_Power = 0
+        P0count = 0
+        R_power = 0
+        objectP1 = 0
+        P1count = 0
+        R_bit = 0
+        Lmoter = 0
+        Rmoter = 0
+        noservo = 0
         switch (sinkou_houkou) {
             case direction.forward:
-                pins.analogWritePin(AnalogPin.P2, Power)
+                pins.analogWritePin(AnalogPin.P2, Power * 10.23)
                 pins.analogWritePin(AnalogPin.P13, 0)
 
                 pins.analogWritePin(AnalogPin.P15, 0)
-                pins.analogWritePin(AnalogPin.P16, Power)
+                pins.analogWritePin(AnalogPin.P16, Power * 10.23)
                 break;
             case direction.left:
                 pins.analogWritePin(AnalogPin.P2, 0)
                 pins.analogWritePin(AnalogPin.P13, 0)
 
                 pins.analogWritePin(AnalogPin.P15, 0)
-                pins.analogWritePin(AnalogPin.P16, Power)
+                pins.analogWritePin(AnalogPin.P16, Power * 10.23)
                 break;
             case direction.right:
-                pins.analogWritePin(AnalogPin.P2, Power)
+                pins.analogWritePin(AnalogPin.P2, Power * 10.23)
                 pins.analogWritePin(AnalogPin.P13, 0)
 
                 pins.analogWritePin(AnalogPin.P15, 0)
                 pins.analogWritePin(AnalogPin.P16, 0)
                 break;
             case direction.right_rotation:
-                pins.analogWritePin(AnalogPin.P2, Power)
+                pins.analogWritePin(AnalogPin.P2, Power * 10.23)
                 pins.analogWritePin(AnalogPin.P13, 0)
 
-                pins.analogWritePin(AnalogPin.P15, Power)
+                pins.analogWritePin(AnalogPin.P15, Power * 10.23)
                 pins.analogWritePin(AnalogPin.P16, 0)
                 break;
             case direction.left_rotation:
                 pins.analogWritePin(AnalogPin.P2, 0)
-                pins.analogWritePin(AnalogPin.P13, Power)
+                pins.analogWritePin(AnalogPin.P13, Power * 10.23)
 
                 pins.analogWritePin(AnalogPin.P15, 0)
-                pins.analogWritePin(AnalogPin.P16, Power)
+                pins.analogWritePin(AnalogPin.P16, Power * 10.23)
                 break;
             case direction.backward:
                 pins.analogWritePin(AnalogPin.P2, 0)
-                pins.analogWritePin(AnalogPin.P13, Power)
+                pins.analogWritePin(AnalogPin.P13, Power * 10.23)
 
-                pins.analogWritePin(AnalogPin.P15, Power)
+                pins.analogWritePin(AnalogPin.P15, Power * 10.23)
                 pins.analogWritePin(AnalogPin.P16, 0)
                 break;
             case direction.Stop:
@@ -319,11 +355,11 @@ namespace sinamon {
             // send
             basic.pause(5);
             pins.setPull(DigitalPin.P2, PinPullMode.PullNone);
-            pins.digitalWritePin(DigitalPin.P12, 0);
+            pins.digitalWritePin(DigitalPin.P14, 0);
             control.waitMicros(2);
-            pins.digitalWritePin(DigitalPin.P12, 1);
+            pins.digitalWritePin(DigitalPin.P14, 1);
             control.waitMicros(10);
-            pins.digitalWritePin(DigitalPin.P12, 0);
+            pins.digitalWritePin(DigitalPin.P14, 0);
             // read
             d1 = pins.pulseIn(DigitalPin.P10, PulseValue.High, 500 * 58);
             d2 = d2 + d1;
@@ -344,11 +380,11 @@ namespace sinamon {
             // send
             basic.pause(5);
             pins.setPull(DigitalPin.P2, PinPullMode.PullNone);
-            pins.digitalWritePin(DigitalPin.P12, 0);
+            pins.digitalWritePin(DigitalPin.P1, 0);
             control.waitMicros(2);
-            pins.digitalWritePin(DigitalPin.P12, 1);
+            pins.digitalWritePin(DigitalPin.P14, 1);
             control.waitMicros(10);
-            pins.digitalWritePin(DigitalPin.P12, 0);
+            pins.digitalWritePin(DigitalPin.P14, 0);
             // read
             d1 = pins.pulseIn(DigitalPin.P10, PulseValue.High, 500 * 58);
             d2 = d1 + d2;
@@ -459,34 +495,36 @@ namespace sinamon {
 
     }
 
-    //% color="#009A00"  weight=19 blockId=microbit2_decideLight block="m:bitOptical sensor value |%limit| Darker" group="8 microbit Optical_sensor"
-    //% limit.min=0 limit.max=100
-    //% advanced=true
-    export function microbit2_decideLight(limit: number): boolean {
-        if (input.lightLevel() / 254 * 100 < limit) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-
-    //% color="#009A00"  weight=17 blockId=microbit2_denkitemp block="m:bitOptical sensor value" group="8 microbit Optical_sensor"
-    //% advanced=true
-    export function microbit2_denkitemp(): number {
-
-        return Math.round(input.lightLevel() / 254 * 100);
-
-    }
-
     /*
-        //% color="#228b22"  weight=16 blockId=microbit2_denkiLED block="m:bit Optical sensor value" group="8 microbit Optical_sensor"
+    
+        //% color="#009A00"  weight=19 blockId=microbit2_decideLight block="m:bitOptical sensor value |%limit| Darker" group="8 microbit Optical_sensor"
+        //% limit.min=0 limit.max=100
         //% advanced=true
-        export function microbit2_denkiLED() {
-            basic.showNumber(Math.round(input.lightLevel() / 254 * 100));
+        export function microbit2_decideLight(limit: number): boolean {
+            if (input.lightLevel() / 254 * 100 < limit) {
+                return true;
+            } else {
+                return false;
+            }
         }
-    */
+    
+    
+    
+        //% color="#009A00"  weight=17 blockId=microbit2_denkitemp block="m:bitOptical sensor value" group="8 microbit Optical_sensor"
+        //% advanced=true
+        export function microbit2_denkitemp(): number {
+    
+            return Math.round(input.lightLevel() / 254 * 100);
+    
+        }
+    
+        
+            //% color="#228b22"  weight=16 blockId=microbit2_denkiLED block="m:bit Optical sensor value" group="8 microbit Optical_sensor"
+            //% advanced=true
+            export function microbit2_denkiLED() {
+                basic.showNumber(Math.round(input.lightLevel() / 254 * 100));
+            }
+        */
 
 
 
