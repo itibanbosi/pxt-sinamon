@@ -46,7 +46,7 @@ pins.setPull(DigitalPin.P14, PinPullMode.PullNone)
 pins.setPull(DigitalPin.P4, PinPullMode.PullNone)
 pins.setPull(DigitalPin.P3, PinPullMode.PullNone)
 let neo_sinamon = neopixel.create(DigitalPin.P9, 2, NeoPixelMode.RGB)
-
+neo_sinamon.setBrightness(15)
 //% color="#ff4500" weight=94 
 namespace sinamon {
 
@@ -563,6 +563,7 @@ namespace sinamon {
                 }
                 else{
                     color_value = 0
+                    neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Black))
                 }
             }
         }
