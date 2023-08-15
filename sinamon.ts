@@ -23,6 +23,8 @@
     P1
 カラーセンサー
     I2C
+色温度　B/R＊3810－1391
+
 */
 let objectP0 = 0
 let L_bit = 0
@@ -526,6 +528,17 @@ namespace sinamon {
             }
         */
 
+    //% color="#228b22"  weight=16 blockId=color_temp block="color Temperatures value" group="8 color_sensor"
+    //% advanced=true
+    export function color_temp() : number {
+        return Math.round(3810 * envirobit.getBlue() / envirobit.getRed() + 1391)
+    }
+
+    //% color="#228b22"  weight=16 blockId=color_light block="color light value" group="8 color_sensor"
+    //% advanced=true
+    export function color_light(): number {
+        return Math.round(envirobit.getLight())
+    }
 
 
 
