@@ -1,4 +1,4 @@
-/* sinamon V0.5 1023/08/15
+/* sinamon V0.3 1023/07/27
 超音波センサ
     Tri P14
     Eco P10
@@ -23,8 +23,6 @@
     P1
 カラーセンサー
     I2C
-色温度　B/R＊3810－1391
-
 */
 let objectP0 = 0
 let L_bit = 0
@@ -37,16 +35,18 @@ let R_bit = 0
 let Lmoter = 0
 let Rmoter = 0
 let noservo = 0
-let color_value = 0
 led.enable(false)
+let color_value = 0
 pins.setEvents(DigitalPin.P6, PinEventType.Edge)
 pins.setEvents(DigitalPin.P7, PinEventType.Edge)
 pins.setPull(DigitalPin.P10, PinPullMode.PullNone)
 pins.setPull(DigitalPin.P14, PinPullMode.PullNone)
 pins.setPull(DigitalPin.P4, PinPullMode.PullNone)
 pins.setPull(DigitalPin.P3, PinPullMode.PullNone)
+
 let neo_sinamon = neopixel.create(DigitalPin.P9, 2, NeoPixelMode.RGB)
 neo_sinamon.setBrightness(15)
+
 //% color="#ff4500" weight=94 
 namespace sinamon {
 
@@ -207,7 +207,7 @@ namespace sinamon {
         }
         if (R_bit == 1 && noservo == 1) {
             P1count += 1
-            //serial.writeValue("R", P1count)
+            serial.writeValue("R", P1count)
             if (P1count < Math.abs(objectP1)) {
                 if (P1count + 10 < Math.abs(objectP1)) {
                     R_power = 300
@@ -244,7 +244,7 @@ namespace sinamon {
         }
         if (L_bit == 1 && noservo == 1) {
             P0count += 1
-            //serial.writeValue("L", P0count)
+            serial.writeValue("L", P0count)
             if (P0count < Math.abs(objectP0)) {
                 if (P0count + 10 < Math.abs(objectP0)) {
                     L_Power = 300
@@ -280,17 +280,7 @@ namespace sinamon {
     //% block="Move |%sinkou_houkou|,power|%Power|" group="1 Basic movement"
     //% Power.min=0 Power.max=100 Power.defl=100
     export function car_derection(sinkou_houkou: direction, Power: number): void {
-        objectP0 = 0
-        L_bit = 0
-        L_Power = 0
-        P0count = 0
-        R_power = 0
-        objectP1 = 0
-        P1count = 0
-        R_bit = 0
-        Lmoter = 0
-        Rmoter = 0
-        noservo = 0
+        let noservo = 0
         switch (sinkou_houkou) {
             case direction.forward:
                 pins.analogWritePin(AnalogPin.P2, Power * 10.23)
@@ -371,7 +361,7 @@ namespace sinamon {
     }
 
     //% color="#009A00" weight=30 block="(minimam 5cm) dstance |%limit| cm  |%nagasa| " group="6 Ultrasonic_Distance sensor"
-    //% limit.min=5 limit.max=30 limit.defl=5
+    //% limit.min=5 limit.max=30
     //% advanced=true
     export function sonar_ping_3(limit: number, nagasa: kyori): boolean {
         let d1 = 0;
@@ -498,36 +488,37 @@ namespace sinamon {
 
     }
 
-    /*
-    
-        //% color="#009A00"  weight=19 blockId=microbit2_decideLight block="m:bitOptical sensor value |%limit| Darker" group="8 microbit Optical_sensor"
-        //% limit.min=0 limit.max=100
-        //% advanced=true
-        export function microbit2_decideLight(limit: number): boolean {
-            if (input.lightLevel() / 254 * 100 < limit) {
-                return true;
-            } else {
-                return false;
-            }
+/*
+
+    //% color="#009A00"  weight=19 blockId=microbit2_decideLight block="m:bitOptical sensor value |%limit| Darker" group="8 microbit Optical_sensor"
+    //% limit.min=0 limit.max=100
+    //% advanced=true
+    export function microbit2_decideLight(limit: number): boolean {
+        if (input.lightLevel() / 254 * 100 < limit) {
+            return true;
+        } else {
+            return false;
         }
-    
-    
-    
-        //% color="#009A00"  weight=17 blockId=microbit2_denkitemp block="m:bitOptical sensor value" group="8 microbit Optical_sensor"
+    }
+
+
+
+    //% color="#009A00"  weight=17 blockId=microbit2_denkitemp block="m:bitOptical sensor value" group="8 microbit Optical_sensor"
+    //% advanced=true
+    export function microbit2_denkitemp(): number {
+
+        return Math.round(input.lightLevel() / 254 * 100);
+
+    }
+
+
+        //% color="#228b22"  weight=16 blockId=microbit2_denkiLED block="m:bit Optical sensor value" group="8 microbit Optical_sensor"
         //% advanced=true
-        export function microbit2_denkitemp(): number {
-    
-            return Math.round(input.lightLevel() / 254 * 100);
-    
+        export function microbit2_denkiLED() {
+            basic.showNumber(Math.round(input.lightLevel() / 254 * 100));
         }
-    
-        
-            //% color="#228b22"  weight=16 blockId=microbit2_denkiLED block="m:bit Optical sensor value" group="8 microbit Optical_sensor"
-            //% advanced=true
-            export function microbit2_denkiLED() {
-                basic.showNumber(Math.round(input.lightLevel() / 254 * 100));
-            }
-        */
+    */
+
 
     //% color="#ffa500"  weight=16 blockId=color_temp block="color Temperatures value" group="8 color_sensor"
     //% advanced=true
