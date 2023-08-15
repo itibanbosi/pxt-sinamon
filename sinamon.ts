@@ -1,4 +1,4 @@
-/* sinamon V0.3 1023/07/27
+/* sinamon V0.5 1023/08/15
 超音波センサ
     Tri P14
     Eco P10
