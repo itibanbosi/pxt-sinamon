@@ -545,18 +545,18 @@ namespace sinamon {
     //% advanced=true
     export function color_ID(): number {
         if 
-            ((envirobit.getBlue() > 100) && (envirobit.getLight() < 5000)) {
-            color_value = 3
+            ((color_temp() > 2000) && (color_temp() < 3000) && (envirobit.getLight() > 1000) && (color_temp() < 5000)) {
+            color_value = 1
             }
         else {
             if
-                ((envirobit.getGreen() > 100) && (envirobit.getLight() < 5000)) {
+                ((color_temp() > 4500) && (color_temp() < 6000) && (envirobit.getLight() > 1000) && (color_temp() < 5000)) {
                 color_value = 2
             }
             else {
                 if
-                ((envirobit.getRed() > 100) && (envirobit.getLight() < 5000)) {
-                color_value = 1
+                    ((color_temp() > 8000) && (color_temp() < 12000) && (envirobit.getLight() > 1000) && (color_temp() < 5000)) {
+                    color_value = 3
                 }
                 else{
                     color_value = 0
