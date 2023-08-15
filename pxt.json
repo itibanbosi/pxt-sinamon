@@ -6,7 +6,8 @@
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "neopixel": "github:microsoft/pxt-neopixel#v0.7.5"
+        "neopixel": "github:microsoft/pxt-neopixel#v0.7.5",
+        "envirobit": "github:pimoroni/pxt-envirobit#v0.0.5"
     },
     "files": [
         "README.md",
@@ -19,11 +20,11 @@
     ],
     "public": true,
     "targetVersions": {
-        "target": "6.0.15",
+        "target": "6.0.17",
         "targetId": "microbit"
     },
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "blocksprj"
 }
