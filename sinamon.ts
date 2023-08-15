@@ -529,19 +529,19 @@ namespace sinamon {
             }
         */
 
-    //% color="#228b22"  weight=16 blockId=color_temp block="color Temperatures value" group="8 color_sensor"
+    //% color="#ffa500"  weight=16 blockId=color_temp block="color Temperatures value" group="8 color_sensor"
     //% advanced=true
     export function color_temp() : number {
         return Math.round(3810 * envirobit.getBlue() / envirobit.getRed() + 1391)
     }
 
-    //% color="#228b22"  weight=16 blockId=color_light block="colorsenser light value" group="8 color_sensor"
+    //% color="#ffa500"  weight=16 blockId=color_light block="colorsenser light value" group="8 color_sensor"
     //% advanced=true
     export function color_light(): number {
         return Math.round(envirobit.getLight())
     }
 
-    //% color="#228b22"  weight=16 blockId=color_ID block="color ID" group="8 color_sensor"
+    //% color="#ffa500"  weight=16 blockId=color_ID block="color ID" group="8 color_sensor"
     //% advanced=true
     export function color_ID(): number {
         if 
