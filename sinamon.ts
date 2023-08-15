@@ -45,7 +45,7 @@ pins.setPull(DigitalPin.P10, PinPullMode.PullNone)
 pins.setPull(DigitalPin.P14, PinPullMode.PullNone)
 pins.setPull(DigitalPin.P4, PinPullMode.PullNone)
 pins.setPull(DigitalPin.P3, PinPullMode.PullNone)
-let strip = neopixel.create(DigitalPin.P9, 2, NeoPixelMode.RGB)
+let neo_sinamon = neopixel.create(DigitalPin.P9, 2, NeoPixelMode.RGB)
 
 //% color="#ff4500" weight=94 
 namespace sinamon {
@@ -547,19 +547,19 @@ namespace sinamon {
         if 
             ((color_temp() > 2000) && (color_temp() < 3000) && (envirobit.getLight() > 1000) && (envirobit.getLight() < 5000)) {
             color_value = 1
-            strip.showColor(neopixel.colors(NeoPixelColors.Red))
+            neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Red))
             }
         else {
             if
                 ((color_temp() > 4500) && (color_temp() < 6000) && (envirobit.getLight() > 1000) && (envirobit.getLight() < 5000)) {
                 color_value = 2
-                strip.showColor(neopixel.colors(NeoPixelColors.Green))
+                neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Green))
             }
             else {
                 if
                     ((color_temp() > 8000) && (color_temp() < 12000) && (envirobit.getLight() > 1000) && (envirobit.getLight() < 5000)) {
                     color_value = 3
-                    strip.showColor(neopixel.colors(NeoPixelColors.Blue))
+                    neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Blue))
                 }
                 else{
                     color_value = 0
