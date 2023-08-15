@@ -37,6 +37,7 @@ let R_bit = 0
 let Lmoter = 0
 let Rmoter = 0
 let noservo = 0
+let color_value = 0
 led.enable(false)
 pins.setEvents(DigitalPin.P6, PinEventType.Edge)
 pins.setEvents(DigitalPin.P7, PinEventType.Edge)
@@ -534,15 +535,31 @@ namespace sinamon {
         return Math.round(3810 * envirobit.getBlue() / envirobit.getRed() + 1391)
     }
 
-    //% color="#228b22"  weight=16 blockId=color_light block="color light value" group="8 color_sensor"
+    //% color="#228b22"  weight=16 blockId=color_light block="colorsenser light value" group="8 color_sensor"
     //% advanced=true
     export function color_light(): number {
         return Math.round(envirobit.getLight())
     }
 
-
-
-
-
-
+    //% color="#228b22"  weight=16 blockId=color_ID block="color ID" group="8 color_sensor"
+    //% advanced=true
+    export function color_ID(): number {
+        if 
+            ((envirobit.getBlue() > 100) && (envirobit.getLight() < 5000)) {
+            color_value = 3
+            }
+        if
+            ((envirobit.getGreen() > 100) && (envirobit.getLight() < 5000)) {
+            color_value = 2
+        }
+        if
+            ((envirobit.getRed() > 100) && (envirobit.getLight() < 5000)) {
+            color_value = 1
+        }
+        return color_value
+    }
 }
+
+
+
+
