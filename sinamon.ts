@@ -548,7 +548,7 @@ namespace sinamon {
             }
             else {
                 if
-                    ((color_temp() > 10000) && (color_temp() < 13000) && (envirobit.getLight() > 5000) && (envirobit.getLight() < 6000)) {
+                    ((color_temp() > 10000) && (color_temp() < 13000) && (envirobit.getLight() > 4000) && (envirobit.getLight() < 6000)) {
                     color_value = 3
                     neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Blue))
                 }
@@ -584,7 +584,7 @@ namespace sinamon {
                                     }
                                     else {
                                         if  
-                                            ((color_temp() > 3000) && (color_temp() < 5000) && (envirobit.getLight() > 15000) && (envirobit.getLight() < 17000)) {
+                                            ((color_temp() > 3000) && (color_temp() < 5000) && (envirobit.getLight() > 15000) && (envirobit.getLight() < 19000)) {
                                             color_value = 9
                                             neo_sinamon.showColor(neopixel.colors(NeoPixelColors.White))
                                         }
