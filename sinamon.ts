@@ -697,8 +697,3 @@ namespace smbus {
         return color_value
     }
 */
-
-
-
-
-
