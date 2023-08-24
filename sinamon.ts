@@ -488,36 +488,130 @@ namespace sinamon {
 
     }
 
+
+
+
+    smbus.writeByte(0x29, 0x80, 0x03)  //0x03を書くと動作開始
+    smbus.writeByte(0x29, 0x81, 0x2b)  //this.addr 0x29 0x81=10000001 0x2b=00101011
+    smbus.writeByte(0x29, 0x81, 0x00)  //RGB timing 700ms
+    smbus.writeByte(0x29, 0x81, 0x10)  //16×gain
+
+
+    //% color="#ffa500"  weight=35 block="values light" group="8 color senser"
+    //% advanced=true
+    export function getLight(): number {
+
+        let result: Buffer = smbus.readBuffer(0xb4, pins.sizeOf(NumberFormat.UInt16LE) * 4)
+
+        return smbus.unpack("HHHH", result)[0]
+    }
+
+    //% color="#ffa500"  weight=35 block="values red" group="8 color senser"
+    //% advanced=true
+    export function getRed(): number {
+        return Math.round(rgb()[0])
+    }
+
+
+
+    //% color="#ffa500"  weight=35 block="values green" group="8 color senser"
+    //% advanced=true
+    export function getGreen(): number {
+        return Math.round(rgb()[1])
+    }
+
+
+
+
+    //% color="#ffa500"  weight=35 block="values blue" group="8 color senser"
+    //% advanced=true
+    export function getBlue(): number {
+        return Math.round(rgb()[2])
+    }
+
+
+
+    export function rgb(): number[] {
+        let result: number[] = raw()
+        let clear: number = result.shift()
+        for (let x: number = 0; x < result.length; x++) {
+            result[x] = result[x] * 255 / clear
+        }
+        return result
+    }
+
+
+    export function raw(): number[] {
+
+        let result: Buffer = smbus.readBuffer(0xb4, pins.sizeOf(NumberFormat.UInt16LE) * 4)
+        return smbus.unpack("HHHH", result)
+    }
+
+
+
+
+}
+
+
+
+
+
+namespace smbus {
+    export function writeByte(addr: number, register: number, value: number): void {
+        let temp = pins.createBuffer(2);
+        temp[0] = register;
+        temp[1] = value;
+        pins.i2cWriteBuffer(addr, temp, false);
+    }
+
+
+    export function readBuffer(register: number, len: number): Buffer {
+        let temp = pins.createBuffer(1);
+        temp[0] = register;
+        pins.i2cWriteBuffer(0x29, temp, false);
+        return pins.i2cReadBuffer(0x29, len, false);
+    }
+
+
+    export function unpack(fmt: string, buf: Buffer): number[] {
+        let le: boolean = true;
+        let offset: number = 0;
+        let result: number[] = [];
+        let num_format: NumberFormat = 0;
+        for (let c = 0; c < fmt.length; c++) {
+            switch (fmt.charAt(c)) {
+                case '<':
+                    le = true;
+                    continue;
+                case '>':
+                    le = false;
+                    continue;
+                case 'c':
+                case 'B':
+                    num_format = le ? NumberFormat.UInt8LE : NumberFormat.UInt8BE; break;
+                case 'b':
+                    num_format = le ? NumberFormat.Int8LE : NumberFormat.Int8BE; break;
+                case 'H':
+                    num_format = le ? NumberFormat.UInt16LE : NumberFormat.UInt16BE; break;
+                case 'h':
+                    num_format = le ? NumberFormat.Int16LE : NumberFormat.Int16BE; break;
+            }
+            result.push(buf.getNumber(num_format, offset));
+            offset += pins.sizeOf(num_format);
+        }
+        return result;
+    }
+
+
+
+}
+
+
+
+
+
 /*
 
-    //% color="#009A00"  weight=19 blockId=microbit2_decideLight block="m:bitOptical sensor value |%limit| Darker" group="8 microbit Optical_sensor"
-    //% limit.min=0 limit.max=100
-    //% advanced=true
-    export function microbit2_decideLight(limit: number): boolean {
-        if (input.lightLevel() / 254 * 100 < limit) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-
-    //% color="#009A00"  weight=17 blockId=microbit2_denkitemp block="m:bitOptical sensor value" group="8 microbit Optical_sensor"
-    //% advanced=true
-    export function microbit2_denkitemp(): number {
-
-        return Math.round(input.lightLevel() / 254 * 100);
-
-    }
-
-
-        //% color="#228b22"  weight=16 blockId=microbit2_denkiLED block="m:bit Optical sensor value" group="8 microbit Optical_sensor"
-        //% advanced=true
-        export function microbit2_denkiLED() {
-            basic.showNumber(Math.round(input.lightLevel() / 254 * 100));
-        }
-    */
 
 
     //% color="#ffa500"  weight=16 blockId=color_temp block="color Temperatures value" group="8 color_sensor"
@@ -602,7 +696,8 @@ namespace sinamon {
         }
         return color_value
     }
-}
+*/
+
 
 
 
