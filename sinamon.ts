@@ -555,7 +555,7 @@ namespace sinamon {
     }
 
 
-    //% color="#ffa500"  weight=16 blockId=color_ID block="color ID" group="8 color_sensor"
+    //% color="#ffa500"  weight=16 blockId=color_ID block="color ID" group="8 color senser"
     //% advanced=true
     export function color_ID(): number {
         if
