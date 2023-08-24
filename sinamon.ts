@@ -554,7 +554,7 @@ namespace sinamon {
         return Math.round(3810 * getBlue() / getRed() + 1391)
     }
 
-/*
+
     //% color="#ffa500"  weight=16 blockId=color_ID block="color ID" group="8 color_sensor"
     //% advanced=true
     export function color_ID(): number {
@@ -607,7 +607,7 @@ namespace sinamon {
                                     }
                                     else {
                                         if
-                                            ((color_temp() > 3000) && (color_temp() < 5000) && getLight() > 15000) && (getLight() < 19000)) {
+                                            ((color_temp() > 3000) && (color_temp() < 5000) && (getLight() > 15000) && (getLight() < 19000)) {
                                             color_value = 9
                                             neo_sinamon.showColor(neopixel.colors(NeoPixelColors.White))
                                         }
@@ -626,8 +626,10 @@ namespace sinamon {
         return color_value
     }
 
-}
-*/
+
+
+
+
 namespace smbus {
     export function writeByte(addr: number, register: number, value: number): void {
         let temp = pins.createBuffer(2);
