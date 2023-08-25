@@ -361,7 +361,7 @@ namespace sinamon {
     }
 
     //% color="#009A00" weight=30 block="(minimam 5cm) dstance |%limit| cm  |%nagasa| " group="6 Ultrasonic_Distance sensor"
-    //% limit.min=5 limit.max=30
+    //% limit.min=5 limit.max=30 limit.defl=5
     //% advanced=true
     export function sonar_ping_3(limit: number, nagasa: kyori): boolean {
         let d1 = 0;
