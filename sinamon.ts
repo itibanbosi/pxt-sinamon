@@ -91,7 +91,18 @@ namespace sinamon {
         Stop
     }
 
-
+    export enum colorcycle {
+        //% block="cycle1"
+        cycle1,
+        //% block="cycle10",
+        cycle10,
+        //% block="cycle42",
+        cycle42,
+        //% block="cylce64",
+        cycle64,
+        //% block="cycle256",
+        cycle256
+    }
 
     //% color="#1E90FF" weight=93 block="Wait time (sec)|%second|" group="1 sinamon"
     //% second.min=0 second.max=10 second.defl=1
@@ -558,6 +569,32 @@ namespace sinamon {
     }
 
 
+    //% color="#ffa500" weight=88 blockId=selectcycle
+    //% block="choice |%cycle|" group="8 color senser"
+    export function selectcycle(cycle: colorcycle): void {
+
+        switch (cycle) {
+            case colorcycle.cycle1:
+                smbus.writeByte(0x81, 0xFF)
+                break;
+            case colorcycle.cycle10:
+                smbus.writeByte(0x81, 0xF6)
+                break;
+            case colorcycle.cycle42:
+                smbus.writeByte(0x81, 0xD5)
+                break;
+            case colorcycle.cycle64:
+                smbus.writeByte(0x81, 0xC0)
+                break;
+            case colorcycle.cycle256:
+                smbus.writeByte(0x81, 0x00)
+                break;
+        }
+    }
+
+
+
+
     //% color="#ffa500"  weight=16 blockId=color_ID block="color ID" group="8 color senser"
     //% advanced=true
     export function color_ID(): number {
@@ -628,7 +665,6 @@ namespace sinamon {
         }
         return color_value
     }
-
 
 
 
