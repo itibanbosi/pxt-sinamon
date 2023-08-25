@@ -517,8 +517,8 @@ namespace sinamon {
     smbus.writeByte(0x80, 0x03)  //0x03を書くと動作開始
     smbus.writeByte(0x81, 0x2b)  //this.addr 0x29 0x81=10000001 0x2b=00101011
 */
-    smbus.writeByte(0x01, 0x00)  //RGB timing 700ms
-    smbus.writeByte(0x0F, 0x10)  //16×gain
+    smbus.writeByte(0x81, 0x00)  //RGB timing 700ms
+
 
     smbus.writeByte(0x00, 0x03)  //0x03を書くと動作開始
     
@@ -616,6 +616,7 @@ namespace sinamon {
         }
     }
 
+/*
     //% color="#ffa500" weight=88 blockId=selectgain
     //% block="choice |%gain|" group="8 color senser"
     //% advanced=true
@@ -637,7 +638,7 @@ namespace sinamon {
 
         }
     }
-
+*/
 
     //% color="#ffa500"  weight=16 blockId=color_ID block="color ID" group="8 color senser"
     //% advanced=true
