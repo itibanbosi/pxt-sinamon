@@ -104,6 +104,17 @@ namespace sinamon {
         cycle256
     }
 
+    export enum colorgain {
+        //% block="1×gain"
+        gain1,
+        //% block="4×gain",
+        gain4,
+        //% block="16×gain",
+        gain16,
+        //% block="60×gain",
+        gain60
+    }
+
     //% color="#1E90FF" weight=93 block="Wait time (sec)|%second|" group="1 sinamon"
     //% second.min=0 second.max=10 second.defl=1
     export function driveForwards(second: number): void {
@@ -571,6 +582,7 @@ namespace sinamon {
 
     //% color="#ffa500" weight=88 blockId=selectcycle
     //% block="choice |%cycle|" group="8 color senser"
+    //% advanced=true
     export function selectcycle(cycle: colorcycle): void {
 
         switch (cycle) {
@@ -592,7 +604,27 @@ namespace sinamon {
         }
     }
 
+    //% color="#ffa500" weight=88 blockId=selectgain
+    //% block="choice |%gain|" group="8 color senser"
+    //% advanced=true
+    export function selectgain(gain: colorgain): void {
 
+        switch (gain) {
+            case colorgain.gain1:
+                smbus.writeByte(0x81, 0x00)
+                break;
+            case colorgain.gain4:
+                smbus.writeByte(0x81, 0x01)
+                break;
+            case colorgain.gain16:
+                smbus.writeByte(0x81, 0x10)
+                break;
+            case colorgain.gain60:
+                smbus.writeByte(0x81, 0x11)
+                break;
+
+        }
+    }
 
 
     //% color="#ffa500"  weight=16 blockId=color_ID block="color ID" group="8 color senser"
