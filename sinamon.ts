@@ -491,10 +491,10 @@ namespace sinamon {
 
 
 
-    smbus.writeByte(0x29, 0x80, 0x03)  //0x03を書くと動作開始
-    smbus.writeByte(0x29, 0x81, 0x2b)  //this.addr 0x29 0x81=10000001 0x2b=00101011
-    smbus.writeByte(0x29, 0x81, 0x00)  //RGB timing 700ms
-    smbus.writeByte(0x29, 0x81, 0x10)  //16×gain
+    smbus.writeByte(0x80, 0x03)  //0x03を書くと動作開始
+    smbus.writeByte(0x81, 0x2b)  //this.addr 0x29 0x81=10000001 0x2b=00101011
+    smbus.writeByte(0x81, 0x00)  //RGB timing 700ms
+    smbus.writeByte(0x81, 0x10)  //16×gain
 
 
     //% color="#ffa500"  weight=35 block="values light" group="8 color senser"
@@ -528,6 +528,9 @@ namespace sinamon {
     export function getBlue(): number {
         return Math.round(rgb()[2])
     }
+
+
+
 
 
 
@@ -631,11 +634,11 @@ namespace sinamon {
 
 
 namespace smbus {
-    export function writeByte(addr: number, register: number, value: number): void {
+    export function writeByte( register: number, value: number): void {
         let temp = pins.createBuffer(2);
         temp[0] = register;
         temp[1] = value;
-        pins.i2cWriteBuffer(addr, temp, false);
+        pins.i2cWriteBuffer(0x29, temp, false);
     }
 
 
