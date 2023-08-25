@@ -511,7 +511,7 @@ namespace sinamon {
     }
 
 /*
-    smbus.writeByte(0x81, 0x00)  //RGB timing 700ms
+    smbus.writeByte(0x81, 0x00)  //0x81=10000001  RGB timing 700ms
     smbus.writeByte(0x81, 0x10)  //16×gain
 
     smbus.writeByte(0x80, 0x03)  //0x03を書くと動作開始
@@ -623,16 +623,16 @@ namespace sinamon {
 
         switch (gain) {
             case colorgain.gain1:
-                smbus.writeByte(0x0F, 0x00)
+                smbus.writeByte(0x8C, 0x00)
                 break;
             case colorgain.gain4:
-                smbus.writeByte(0x0F, 0x01)
+                smbus.writeByte(0x8C, 0x01)
                 break;
             case colorgain.gain16:
-                smbus.writeByte(0x0F, 0x10)
+                smbus.writeByte(0x8C, 0x10)
                 break;
             case colorgain.gain60:
-                smbus.writeByte(0x0F, 0x11)
+                smbus.writeByte(0x8C, 0x11)
                 break;
 
         }
