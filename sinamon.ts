@@ -520,7 +520,7 @@ namespace sinamon {
     smbus.writeByte(0x81, 0x00)  //RGB timing 700ms
 
 
-    smbus.writeByte(0x00, 0x03)  //0x03を書くと動作開始
+    smbus.writeByte(0x80, 0x03)  //0x03を書くと動作開始
     
 
 
