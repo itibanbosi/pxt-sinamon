@@ -599,19 +599,19 @@ namespace sinamon {
 
         switch (cycle) {
             case colorcycle.cycle1:
-                smbus.writeByte(0x81, 0xFF)
+                smbus.writeByte(0x01, 0xFF)
                 break;
             case colorcycle.cycle10:
-                smbus.writeByte(0x81, 0xF6)
+                smbus.writeByte(0x01, 0xF6)
                 break;
             case colorcycle.cycle42:
-                smbus.writeByte(0x81, 0xD5)
+                smbus.writeByte(0x01, 0xD5)
                 break;
             case colorcycle.cycle64:
-                smbus.writeByte(0x81, 0xC0)
+                smbus.writeByte(0x01, 0xC0)
                 break;
             case colorcycle.cycle256:
-                smbus.writeByte(0x81, 0x00)
+                smbus.writeByte(0x01, 0x00)
                 break;
         }
     }
@@ -623,16 +623,16 @@ namespace sinamon {
 
         switch (gain) {
             case colorgain.gain1:
-                smbus.writeByte(0x81, 0x00)
+                smbus.writeByte(0x0F, 0x00)
                 break;
             case colorgain.gain4:
-                smbus.writeByte(0x81, 0x01)
+                smbus.writeByte(0x0F, 0x01)
                 break;
             case colorgain.gain16:
-                smbus.writeByte(0x81, 0x10)
+                smbus.writeByte(0x0F, 0x10)
                 break;
             case colorgain.gain60:
-                smbus.writeByte(0x81, 0x11)
+                smbus.writeByte(0x0F, 0x11)
                 break;
 
         }
