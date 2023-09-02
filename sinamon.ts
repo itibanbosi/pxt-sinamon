@@ -231,6 +231,8 @@ namespace sinamon {
     //% color="#808080" weight=80 block="left |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function left(step: number): void {
+        sinamon.car_derection(sinamon.direction.Stop, 0)
+        basic.pause(500)
         noservo = 1
         Lmoter = 0
         Rmoter = 0
@@ -246,6 +248,8 @@ namespace sinamon {
     //% color="#808080" weight=80 block="left |%step| degree" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function left_degree(step: number): void {
+        sinamon.car_derection(sinamon.direction.Stop, 0)
+        basic.pause(500)
         noservo = 1
         Lmoter = 0
         Rmoter = 0
