@@ -643,72 +643,27 @@ namespace sinamon {
     //% color="#ffa500"  weight=16 blockId=color_ID block="color ID" group="8 color senser"
     //% advanced=true
     export function color_ID(): number {
-        if
-            ((color_temp() > 2000) && (color_temp() < 3000) && (getLight() > 2000) && (getLight() < 5000)) {
-            color_value = 1
-            neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Red))
-        }
-        else {
-            if
-                ((color_temp() > 5000) && (color_temp() < 6000) && (getLight() > 3000) && (getLight() < 5000)) {
+        if ((getLight() > 1300) && (getLight() < 2000)) {
+            if ((color_temp() > 2000) && (color_temp() < 4000))  {
+                color_value = 1
+                neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Red))
+            }
+            
+            if ((color_temp() > 4000) && (color_temp() < 6000))  {
                 color_value = 2
                 neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Green))
             }
-            else {
-                if
-                    ((color_temp() > 10000) && (color_temp() < 13000) && (getLight() > 4000) && (getLight() < 6000)) {
+            
+            if ((color_temp() > 6000) && (color_temp() < 8000)) {
                     color_value = 3
                     neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Blue))
                 }
-                else {
-                    if
-                        ((color_temp() > 4000) && (color_temp() < 5000) && (getLight() > 6000) && (getLight() < 7000)) {
-                        color_value = 4
-                        neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Purple))
-                    }
-                    else {
-                        if
-                            ((color_temp() > 10000) && (color_temp() < 12000) && (getLight() > 6000) && (getLight() < 8000)) {
-                            color_value = 5
-                            neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Indigo))
-                        }
-                        else {
-                            if
-                                ((color_temp() > 2000) && (color_temp() < 3000) && (getLight() > 12000) && (getLight() < 16000)) {
-                                color_value = 6
-                                neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Yellow))
-                            }
-                            else {
-                                if
-                                    ((color_temp() > 3000) && (color_temp() < 4000) && (getLight() > 9000) && (getLight() < 11000)) {
-                                    color_value = 7
-                                    neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Indigo))
-                                }
-                                else {
-                                    if
-                                        ((color_temp() > 3000) && (color_temp() < 4000) && (getLight() > 12000) && (getLight() < 14000)) {
-                                        color_value = 8
-                                        neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Purple))
-                                    }
-                                    else {
-                                        if
-                                            ((color_temp() > 3000) && (color_temp() < 5000) && (getLight() > 15000) && (getLight() < 19000)) {
-                                            color_value = 9
-                                            neo_sinamon.showColor(neopixel.colors(NeoPixelColors.White))
-                                        }
-                                        else {
-                                            color_value = 0
-                                            neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Black))
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+        else {
+            color_value = 0
+            neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Black))
             }
         }
-        return color_value
+    return color_value
     }
 
 
