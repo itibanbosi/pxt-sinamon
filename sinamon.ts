@@ -137,6 +137,7 @@ namespace sinamon {
         while (Lmoter == 0 || Rmoter == 0) {
             basic.pause(100)
         }
+        basic.pause(300)
     }
 
 
@@ -154,7 +155,7 @@ namespace sinamon {
         while (Lmoter == 0 || Rmoter == 0) {
             basic.pause(100)
         }
-
+        basic.pause(300)
     }
 
 
@@ -172,7 +173,7 @@ namespace sinamon {
         while (Lmoter == 0 || Rmoter == 0) {
             basic.pause(100)
         }
-
+        basic.pause(300)
     }
 
     //% color="#808080" weight=82 block="back |%step| step" group="1 sinamon"
@@ -189,7 +190,7 @@ namespace sinamon {
         while (Lmoter == 0 || Rmoter == 0) {
             basic.pause(100)
         }
-
+        basic.pause(300)
     }
 
 
@@ -207,7 +208,7 @@ namespace sinamon {
         while (Lmoter == 0 || Rmoter == 0) {
             basic.pause(100)
         }
-
+        basic.pause(300)
     }
 
     //% color="#808080" weight=80 block="right |%step|degree" group="1 sinamon"
@@ -224,7 +225,7 @@ namespace sinamon {
         while (Lmoter == 0 || Rmoter == 0) {
             basic.pause(100)
         }
-
+        basic.pause(300)
     }
 
     //% color="#808080" weight=80 block="left |%step| step" group="1 sinamon"
@@ -239,7 +240,7 @@ namespace sinamon {
         while (Lmoter == 0 || Rmoter == 0) {
             basic.pause(100)
         }
-
+        basic.pause(300)
     }
 
     //% color="#808080" weight=80 block="left |%step| degree" group="1 sinamon"
@@ -255,7 +256,7 @@ namespace sinamon {
             basic.pause(100)
 
         }
-
+        basic.pause(300)
     }
 
 
