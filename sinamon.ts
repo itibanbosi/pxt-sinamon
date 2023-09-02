@@ -135,6 +135,22 @@ namespace sinamon {
         }
     }
 
+
+    //% color="#808080" weight=82 block="forward |%step| cm" group="1 sinamon"
+    //% step.min=0 step.max=50 
+    export function forward_cm(step: number): void {
+        noservo = 1
+        Lmoter = 0
+        Rmoter = 0
+        nunber_revolution(step/24, step/24)
+        L_forward()
+        R_forward()
+        while (Lmoter == 0 || Rmoter == 0) {
+            basic.pause(100)
+        }
+    }
+
+
     //% color="#808080" weight=82 block="back |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function back(step: number): void {
@@ -148,6 +164,21 @@ namespace sinamon {
             basic.pause(100)
         }
     }
+
+    //% color="#808080" weight=82 block="back |%step| step" group="1 sinamon"
+    //% step.min=0 step.max=50 
+    export function back_cm(step: number): void {
+        noservo = 1
+        Lmoter = 0
+        Rmoter = 0
+        nunber_revolution(step * -1/24, step * -1/24)
+        L_backward()
+        R_backward()
+        while (Lmoter == 0 || Rmoter == 0) {
+            basic.pause(100)
+        }
+    }
+
 
     //% color="#808080" weight=80 block="right |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
@@ -163,7 +194,19 @@ namespace sinamon {
         }
     }
 
-
+    //% color="#808080" weight=80 block="right |%step|degree" group="1 sinamon"
+    //% step.min=0 step.max=50 
+    export function right_degree(step: number): void {
+        noservo = 1
+        Lmoter = 0
+        Rmoter = 0
+        nunber_revolution(step/16, step * -1/16)
+        L_forward()
+        R_backward()
+        while (Lmoter == 0 || Rmoter == 0) {
+            basic.pause(100)
+        }
+    }
 
     //% color="#808080" weight=80 block="left |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
@@ -179,6 +222,19 @@ namespace sinamon {
         }
     }
 
+    //% color="#808080" weight=80 block="left |%step| degree" group="1 sinamon"
+    //% step.min=0 step.max=50 
+    export function left_degree(step: number): void {
+        noservo = 1
+        Lmoter = 0
+        Rmoter = 0
+        nunber_revolution(step * -1, step)
+        L_backward()
+        R_forward()
+        while (Lmoter == 0 || Rmoter == 0) {
+            basic.pause(100)
+        }
+    }
 
 
     function nunber_revolution(数値: number, 数値2: number) {
