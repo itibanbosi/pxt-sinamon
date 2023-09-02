@@ -359,6 +359,23 @@ namespace sinamon {
     //% Power.min=0 Power.max=100 Power.defl=100
     export function car_derection(sinkou_houkou: direction, Power: number): void {
         let noservo = 0
+        let objectP0 = 0
+        let L_bit = 0
+        let L_Power = 0
+        let P0count = 0
+        let R_power = 0
+        let objectP1 = 0
+        let P1count = 0
+        let R_bit = 0
+        let Lmoter = 0
+        let Rmoter = 0
+        
+
+
+
+
+
+
         switch (sinkou_houkou) {
             case direction.forward:
                 pins.analogWritePin(AnalogPin.P2, Power * 10.23)
