@@ -643,7 +643,9 @@ namespace sinamon {
     //% color="#ffa500"  weight=16 blockId=color_ID block="color ID" group="8 color senser"
     //% advanced=true
     export function color_ID(): number {
-        if ((getLight() > 1300) && (getLight() < 2000)) {
+        color_value = 0
+        neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Black))
+        if ((getLight() > 1000) && (getLight() < 3000)) {
             if ((color_temp() > 2000) && (color_temp() < 4000))  {
                 color_value = 1
                 neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Red))
@@ -658,10 +660,6 @@ namespace sinamon {
                     color_value = 3
                     neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Blue))
                 }
-        else {
-            color_value = 0
-            neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Black))
-            }
         }
     return color_value
     }
