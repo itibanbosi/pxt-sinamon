@@ -235,6 +235,8 @@ namespace sinamon {
             basic.pause(100)
 
         }
+        control.reset()
+        sinamon.driveForwards(1)
     }
 
 
