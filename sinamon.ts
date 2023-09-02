@@ -645,7 +645,7 @@ namespace sinamon {
     export function color_ID(): number {
         color_value = 0
         neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Black))
-        if ((getLight() > 1000) && (getLight() < 3000)) {
+        if ((getLight() > 50) && (getLight() < 100)) {
             if ((color_temp() > 2000) && (color_temp() < 4000))  {
                 color_value = 1
                 neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Red))
