@@ -126,8 +126,8 @@ namespace sinamon {
     //% color="#808080" weight=82 block="forward |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function forward(step: number): void {
-        sinamon.car_derection(sinamon.direction.Stop, 32)
-        basic.pause(300)
+        sinamon.car_derection(sinamon.direction.Stop, 0)
+        basic.pause(500)
         noservo = 1
         Lmoter = 0
         Rmoter = 0
@@ -144,8 +144,8 @@ namespace sinamon {
     //% color="#808080" weight=82 block="forward |%step| cm" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function forward_cm(step: number): void {
-        sinamon.car_derection(sinamon.direction.Stop, 32)
-        basic.pause(300)
+        sinamon.car_derection(sinamon.direction.Stop, 0)
+        basic.pause(500)
         noservo = 1
         Lmoter = 0
         Rmoter = 0
@@ -162,8 +162,8 @@ namespace sinamon {
     //% color="#808080" weight=82 block="back |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function back(step: number): void {
-        sinamon.car_derection(sinamon.direction.Stop, 32)
-        basic.pause(300)
+        sinamon.car_derection(sinamon.direction.Stop, 0)
+        basic.pause(500)
         noservo = 1
         Lmoter = 0
         Rmoter = 0
@@ -179,8 +179,8 @@ namespace sinamon {
     //% color="#808080" weight=82 block="back |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function back_cm(step: number): void {
-        sinamon.car_derection(sinamon.direction.Stop, 32)
-        basic.pause(300)
+        sinamon.car_derection(sinamon.direction.Stop, 0)
+        basic.pause(500)
         noservo = 1
         Lmoter = 0
         Rmoter = 0
@@ -197,8 +197,8 @@ namespace sinamon {
     //% color="#808080" weight=80 block="right |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function right(step: number): void {
-        sinamon.car_derection(sinamon.direction.Stop, 32)
-        basic.pause(300)
+        sinamon.car_derection(sinamon.direction.Stop, 0)
+        basic.pause(500)
         noservo = 1
         Lmoter = 0
         Rmoter = 0
@@ -214,8 +214,8 @@ namespace sinamon {
     //% color="#808080" weight=80 block="right |%step|degree" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function right_degree(step: number): void {
-        sinamon.car_derection(sinamon.direction.Stop, 32)
-        basic.pause(300)
+        sinamon.car_derection(sinamon.direction.Stop, 0)
+        basic.pause(500)
         noservo = 1
         Lmoter = 0
         Rmoter = 0
