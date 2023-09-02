@@ -233,7 +233,7 @@ namespace sinamon {
         R_forward()
         while (Lmoter == 0 || Rmoter == 0) {
             basic.pause(100)
-            control.reset()
+
         }
     }
 
