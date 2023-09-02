@@ -285,7 +285,7 @@ namespace sinamon {
         }
         if (R_bit == 1 && noservo == 1) {
             P1count += 1
-            serial.writeValue("R", P1count)
+            //serial.writeValue("R", P1count)
             if (P1count < Math.abs(objectP1)) {
                 if (P1count + 10 < Math.abs(objectP1)) {
                     R_power = 300
@@ -322,7 +322,7 @@ namespace sinamon {
         }
         if (L_bit == 1 && noservo == 1) {
             P0count += 1
-            serial.writeValue("L", P0count)
+            //serial.writeValue("L", P0count)
             if (P0count < Math.abs(objectP0)) {
                 if (P0count + 10 < Math.abs(objectP0)) {
                     L_Power = 300
