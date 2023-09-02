@@ -37,6 +37,7 @@ let Rmoter = 0
 let noservo = 0
 led.enable(false)
 let color_value = 0
+let volt=0
 pins.setEvents(DigitalPin.P6, PinEventType.Edge)
 pins.setEvents(DigitalPin.P7, PinEventType.Edge)
 pins.setPull(DigitalPin.P10, PinPullMode.PullNone)
@@ -50,6 +51,7 @@ neo_sinamon.setBrightness(15)
 //% color="#ff4500" weight=94 
 namespace sinamon {
 
+    volt = pins.analogReadPin(AnalogPin.P1)/500*6
 
     export enum kyori {
         //% block="long"
