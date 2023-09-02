@@ -358,7 +358,7 @@ namespace sinamon {
     //% block="Move |%sinkou_houkou|,power|%Power|" group="1 Basic movement"
     //% Power.min=0 Power.max=100 Power.defl=100
     export function car_derection(sinkou_houkou: direction, Power: number): void {
- 
+        control.reset()
 
         switch (sinkou_houkou) {
             case direction.forward:
