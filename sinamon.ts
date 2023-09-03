@@ -149,7 +149,7 @@ namespace sinamon {
         noservo = 1
         Lmoter = 0
         Rmoter = 0
-        nunber_revolution(step*2.14, step*2.14)
+        nunber_revolution(step*2.1, step*2.1)
         L_forward()
         R_forward()
         while (Lmoter == 0 || Rmoter == 0) {
@@ -184,7 +184,7 @@ namespace sinamon {
         noservo = 1
         Lmoter = 0
         Rmoter = 0
-        nunber_revolution(step * -1 * 2.14, step * -1 * 2.14)
+        nunber_revolution(step * -1 * 2.1, step * -1 * 2.1)
         L_backward()
         R_backward()
         while (Lmoter == 0 || Rmoter == 0) {
@@ -219,7 +219,7 @@ namespace sinamon {
         noservo = 1
         Lmoter = 0
         Rmoter = 0
-        nunber_revolution(step*0.17, step * -0.17)
+        nunber_revolution(step*0.175, step * -0.175)
         L_forward()
         R_backward()
         while (Lmoter == 0 || Rmoter == 0) {
@@ -253,7 +253,7 @@ namespace sinamon {
         noservo = 1
         Lmoter = 0
         Rmoter = 0
-        nunber_revolution(step * -0.17, step*0.17)
+        nunber_revolution(step * -0.175, step*0.175)
         L_backward()
         R_forward()
         while (Lmoter == 0 || Rmoter == 0) {
