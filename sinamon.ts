@@ -753,7 +753,7 @@ namespace sinamon {
                     color_value = 0
                     neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Black))
                 }
-                if ((getLight() > 500) && (getLight() < 100)) {
+                if ((getLight() > 50) && (getLight() < 100)) {
                     color_value = 4
                     neo_sinamon.showColor(neopixel.colors(NeoPixelColors.White))
                     }
