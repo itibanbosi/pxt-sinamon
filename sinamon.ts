@@ -728,11 +728,11 @@ namespace sinamon {
     //% advanced=true
     export function color_ID(): number {
         color_value = 0
-        /*     黒:0　　赤：1　緑：2　青：3　白:7  */
+        /*     黒:0　　赤：1　緑：2　青：3　茶色：4　白:7  */
         neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Black))
 
 
-        if ((getLight() > 50) && (getLight() < 300)) {
+        if ((getLight() > 100) && (getLight() < 300)) {
             if ((color_temp() > 1500) && (color_temp() < 4500))  {
                 color_value = 1
                 neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Red))
@@ -753,8 +753,8 @@ namespace sinamon {
                     color_value = 0
                     neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Black))
                 }
-                if (getLight() > 300) {
-                    color_value = 7
+                if ((getLight() > 500) && (getLight() < 100)) {
+                    color_value = 4
                     neo_sinamon.showColor(neopixel.colors(NeoPixelColors.White))
                     }
                 
