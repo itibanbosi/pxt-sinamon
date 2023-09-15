@@ -755,7 +755,7 @@ namespace sinamon {
                 }
                 if ((getLight() > 50) && (getLight() < 100)) {
                     color_value = 4
-                    neo_sinamon.showColor(neopixel.colors(NeoPixelColors.White))
+                    neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Orange))
                     }
                 
                 
