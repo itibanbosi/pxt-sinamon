@@ -744,9 +744,9 @@ namespace sinamon {
             }
             
             if ((color_temp() > 5800)) {
-                    color_value = 3
-                    neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Blue))
-                }
+                color_value = 3
+                neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Blue))
+            }
         }
         else {
                 if (getLight() < 50) {
