@@ -601,7 +601,7 @@ namespace sinamon {
     smbus.writeByte(0x80, 0x03)  //0x03を書くと動作開始
     smbus.writeByte(0x81, 0x2b)  //this.addr 0x29 0x81=10000001 0x2b=00101011
 */
-    smbus.writeByte(0x81, 0x00)  //RGB timing 700ms
+    smbus.writeByte(0x81, 0xF6)  //cycle10
 
 
     smbus.writeByte(0x80, 0x03)  //0x03を書くと動作開始
