@@ -728,7 +728,7 @@ namespace sinamon {
     //% advanced=true
     export function color_ID(): number {
         color_value = 0
-        /*     黒:0　　白:1  赤：2　緑：3　青：4　*/
+        /*     黒:0　　白:8  赤：1　緑：2　青：3　*/
         neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Black))
 
 
