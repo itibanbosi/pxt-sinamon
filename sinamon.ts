@@ -728,25 +728,36 @@ namespace sinamon {
     //% advanced=true
     export function color_ID(): number {
         color_value = 0
-/*     白:0　　黒:1  赤：2　緑：3　青：4　*/
-
-
+        /*     黒:0　　白:1  赤：2　緑：3　青：4　*/
         neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Black))
-        if ((getLight() > 50) && (getLight() < 100)) {
-            if ((color_temp() > 2000) && (color_temp() < 4000))  {
-                color_value = 1
+
+
+        if ((getLight() > 50) && (getLight() < 200)) {
+            if ((color_temp() > 1500) && (color_temp() < 4500))  {
+                color_value = 2
                 neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Red))
             }
             
-            if ((color_temp() > 4000) && (color_temp() < 6000))  {
-                color_value = 2
+            if ((color_temp() > 4500) && (color_temp() < 5800))  {
+                color_value = 3
                 neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Green))
             }
             
-            if ((color_temp() > 6000) && (color_temp() < 8000)) {
-                    color_value = 3
+            if ((color_temp() > 5800)) {
+                    color_value = 4
                     neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Blue))
                 }
+        }
+        else {
+                if (getLight() < 50) {
+                    color_value = 0
+                    neo_sinamon.showColor(neopixel.colors(NeoPixelColors.Black))
+                }
+                if (getLight() > 200) {
+                    color_value = 1
+                    neo_sinamon.showColor(neopixel.colors(NeoPixelColors.White))
+                }
+
         }
     return color_value
     }
