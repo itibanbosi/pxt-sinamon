@@ -38,8 +38,7 @@ let noservo = 0
 led.enable(false)
 let color_value = 0
 let volt=0
-pins.setEvents(DigitalPin.P6, PinEventType.Edge)
-pins.setEvents(DigitalPin.P7, PinEventType.Edge)
+
 pins.setPull(DigitalPin.P10, PinPullMode.PullNone)
 pins.setPull(DigitalPin.P14, PinPullMode.PullNone)
 pins.setPull(DigitalPin.P4, PinPullMode.PullNone)
@@ -144,6 +143,8 @@ namespace sinamon {
     //% color="#808080" weight=82 block="forward |%step| cm" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function forward_cm(step: number): void {
+        pins.setEvents(DigitalPin.P6, PinEventType.Edge)
+        pins.setEvents(DigitalPin.P7, PinEventType.Edge)
         //sinamon.car_derection(sinamon.direction.Stop, 0)
         basic.pause(300)
         noservo = 1
@@ -385,7 +386,8 @@ namespace sinamon {
     //% block="Move |%sinkou_houkou|,power|%Power|" group="1 Basic movement"
     //% Power.min=0 Power.max=100 Power.defl=100
     export function car_derection(sinkou_houkou: direction, Power: number): void {
-
+        pins.setEvents(DigitalPin.P6, PinEventType.None)
+        pins.setEvents(DigitalPin.P7, PinEventType.None)
 
         switch (sinkou_houkou) {
             case direction.forward:
