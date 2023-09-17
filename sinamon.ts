@@ -163,6 +163,8 @@ namespace sinamon {
     //% color="#808080" weight=82 block="back |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function back(step: number): void {
+        pins.setEvents(DigitalPin.P6, PinEventType.Edge)
+        pins.setEvents(DigitalPin.P7, PinEventType.Edge)
         //sinamon.car_derection(sinamon.direction.Stop, 0)
         basic.pause(300)
         noservo = 1
@@ -180,6 +182,8 @@ namespace sinamon {
     //% color="#808080" weight=82 block="back |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function back_cm(step: number): void {
+        pins.setEvents(DigitalPin.P6, PinEventType.Edge)
+        pins.setEvents(DigitalPin.P7, PinEventType.Edge)
         //sinamon.car_derection(sinamon.direction.Stop, 0)
         basic.pause(300)
         noservo = 1
@@ -198,6 +202,8 @@ namespace sinamon {
     //% color="#808080" weight=80 block="right |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function right(step: number): void {
+        pins.setEvents(DigitalPin.P6, PinEventType.Edge)
+        pins.setEvents(DigitalPin.P7, PinEventType.Edge)
         //sinamon.car_derection(sinamon.direction.Stop, 0)
         basic.pause(300)
         noservo = 1
@@ -215,6 +221,8 @@ namespace sinamon {
     //% color="#808080" weight=80 block="right |%step|degree" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function right_degree(step: number): void {
+        pins.setEvents(DigitalPin.P6, PinEventType.Edge)
+        pins.setEvents(DigitalPin.P7, PinEventType.Edge)
         //sinamon.car_derection(sinamon.direction.Stop, 0)
         basic.pause(300)
         noservo = 1
@@ -232,6 +240,8 @@ namespace sinamon {
     //% color="#808080" weight=80 block="left |%step| step" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function left(step: number): void {
+        pins.setEvents(DigitalPin.P6, PinEventType.Edge)
+        pins.setEvents(DigitalPin.P7, PinEventType.Edge)
         //sinamon.car_derection(sinamon.direction.Stop, 0)
         basic.pause(300)
         noservo = 1
@@ -249,6 +259,8 @@ namespace sinamon {
     //% color="#808080" weight=80 block="left |%step| degree" group="1 sinamon"
     //% step.min=0 step.max=50 
     export function left_degree(step: number): void {
+        pins.setEvents(DigitalPin.P6, PinEventType.Edge)
+        pins.setEvents(DigitalPin.P7, PinEventType.Edge)
         //sinamon.car_derection(sinamon.direction.Stop, 0)
         basic.pause(300)
         noservo = 1
