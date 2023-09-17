@@ -219,7 +219,7 @@ namespace sinamon {
     }
 
     //% color="#808080" weight=80 block="right |%step|degree" group="1 sinamon"
-    //% step.min=0 step.max=50 
+    //% step.min=0 step.max=180 
     export function right_degree(step: number): void {
         pins.setEvents(DigitalPin.P6, PinEventType.Edge)
         pins.setEvents(DigitalPin.P7, PinEventType.Edge)
@@ -257,7 +257,7 @@ namespace sinamon {
     }
 
     //% color="#808080" weight=80 block="left |%step| degree" group="1 sinamon"
-    //% step.min=0 step.max=50 
+    //% step.min=0 step.max=180 
     export function left_degree(step: number): void {
         pins.setEvents(DigitalPin.P6, PinEventType.Edge)
         pins.setEvents(DigitalPin.P7, PinEventType.Edge)
