@@ -328,9 +328,9 @@ namespace sinamon {
             //serial.writeValue("R", P1count)
             if (P1count < Math.abs(objectP1)) {
                 if (P1count + 10 < Math.abs(objectP1)) {
-                    R_power = 600
+                    R_power = 100
                     if (P0count > P1count) {
-                        R_power = 100
+                        R_power = 50
                     }
                     if (objectP1 == Math.abs(objectP1)) {
                         R_forward()
@@ -365,9 +365,9 @@ namespace sinamon {
             //serial.writeValue("L", P0count)
             if (P0count < Math.abs(objectP0)) {
                 if (P0count + 10 < Math.abs(objectP0)) {
-                    L_Power = 600
+                    L_Power = 100
                     if (P0count < P1count) {
-                        L_Power = 100
+                        L_Power = 50
                     }
                     if (objectP0 == Math.abs(objectP0)) {
                         L_forward()
