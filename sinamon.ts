@@ -327,20 +327,10 @@ namespace sinamon {
             P1count += 1
             //serial.writeValue("R", P1count)
             if (P1count < Math.abs(objectP1)) {
-                if (P1count + 10 < Math.abs(objectP1)) {
-                    R_power = 100
+                if (P1count  < 10 ) {
+                    R_power = 300
                     if (P0count > P1count) {
-                        R_power = 50
-                    }
-                    if (objectP1 == Math.abs(objectP1)) {
-                        R_forward()
-                    } else {
-                        R_backward()
-                    }
-                } else {
-                    R_power = 550
-                    if (P0count > P1count) {
-                        R_power = 400
+                        R_power = 200
                     }
                     if (objectP1 == Math.abs(objectP1)) {
                         R_forward()
@@ -348,11 +338,38 @@ namespace sinamon {
                         R_backward()
                     }
                 }
-            } else {
-                R_stop()
-                Rmoter = 1
+                else {
+
+                    if (P1count + 10 < Math.abs(objectP1)) {
+                        R_power = 100
+                        if (P0count > P1count) {
+                            R_power = 50
+                        }
+                        if (objectP1 == Math.abs(objectP1)) {
+                            R_forward()
+                        } else {
+                            R_backward()
+                        }
+                    } else {
+                        R_power = 550
+                        if (P0count > P1count) {
+                            R_power = 400
+                        }
+                        if (objectP1 == Math.abs(objectP1)) {
+                            R_forward()
+                        } else {
+                            R_backward()
+                        }
+                    }
+                }
             }
+     
+        else {
+            R_stop()
+            Rmoter = 1
+            
         }
+    }
     })
 
     control.onEvent(EventBusSource.MICROBIT_ID_IO_P7, EventBusValue.MICROBIT_PIN_EVT_RISE, function () {
@@ -364,20 +381,10 @@ namespace sinamon {
             P0count += 1
             //serial.writeValue("L", P0count)
             if (P0count < Math.abs(objectP0)) {
-                if (P0count + 10 < Math.abs(objectP0)) {
-                    L_Power = 100
+                if (P0count  < 10) {
+                    L_Power = 300
                     if (P0count < P1count) {
-                        L_Power = 50
-                    }
-                    if (objectP0 == Math.abs(objectP0)) {
-                        L_forward()
-                    } else {
-                        L_backward()
-                    }
-                } else {
-                    L_Power = 550
-                    if (P0count < P1count) {
-                        L_Power = 400
+                        L_Power = 200
                     }
                     if (objectP0 == Math.abs(objectP0)) {
                         L_forward()
@@ -385,12 +392,39 @@ namespace sinamon {
                         L_backward()
                     }
                 }
-            } else {
-                L_stop()
-                Lmoter = 1
+                else {
+                    if (P0count + 10 < Math.abs(objectP0)) {
+                        L_Power = 100
+                        if (P0count < P1count) {
+                            L_Power = 50
+                        }
+                        if (objectP0 == Math.abs(objectP0)) {
+                            L_forward()
+                        } else {
+                            L_backward()
+                        }
+                    } else {
+                        L_Power = 550
+                        if (P0count < P1count) {
+                            L_Power = 400
+                        }
+                        if (objectP0 == Math.abs(objectP0)) {
+                            L_forward()
+                        } else {
+                            L_backward()
+                        }
+                    }
+                }
             }
         }
+
+        else {
+            L_stop()
+            Lmoter = 1
+        }        
+            
     })
+
 
 
 
