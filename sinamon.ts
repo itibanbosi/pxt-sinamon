@@ -437,7 +437,7 @@ namespace sinamon {
 
         switch (sinkou_houkou) {
             case direction.forward:
-                pins.analogWritePin(AnalogPin.P2, Power * 8.5)
+                pins.analogWritePin(AnalogPin.P2, Power *10.23)
                 pins.analogWritePin(AnalogPin.P13, 0)
 
                 pins.analogWritePin(AnalogPin.P15, 0)
