@@ -427,9 +427,9 @@ namespace sinamon {
 
 
     //% color="#3943c6" weight=88 blockId=moving3
-    //% block="Move forward power|%Power| condition|%cond|" group="1 Basic movement"
+    //% block="Move forward power|%Power| To Left|%cond|To Right" group="1 Basic movement"
     //% Power.min=0 Power.max=100 Power.defl=100
-    //% cond.min=-10 cond.max=10 cond.defl=0
+    //% cond.min=-20 cond.max=20 cond.defl=0
     export function moving3(Power: number ,cond:number): void {
         pins.setEvents(DigitalPin.P6, PinEventType.None)
         pins.setEvents(DigitalPin.P7, PinEventType.None)
