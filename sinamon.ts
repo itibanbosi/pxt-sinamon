@@ -426,9 +426,22 @@ namespace sinamon {
     })
 
 
+    //% color="#3943c6" weight=88 blockId=moving3
+    //% block="Move forward power|%Power| condition|%cond|" group="1 Basic movement"
+    //% Power.min=0 Power.max=100 Power.defl=100
+    //% cond.min=-50 cond.max=50 cond.defl=0
+    export function moving3(Power: number ,cond:number): void {
+        pins.setEvents(DigitalPin.P6, PinEventType.None)
+        pins.setEvents(DigitalPin.P7, PinEventType.None)
+        pins.analogWritePin(AnalogPin.P2, Power * 10.23*cond/100)
+        pins.analogWritePin(AnalogPin.P13, 0)
+
+        pins.analogWritePin(AnalogPin.P15, 0)
+        pins.analogWritePin(AnalogPin.P16, Power * 10.23 * cond / 100)
+    }
 
 
-    //% color="#3943c6" weight=88 blockId=moving2
+    //% color="#3943c6" weight=88 
     //% block="Move |%sinkou_houkou|,power|%Power|" group="1 Basic movement"
     //% Power.min=0 Power.max=100 Power.defl=100
     export function car_derection(sinkou_houkou: direction, Power: number): void {
