@@ -416,13 +416,13 @@ namespace sinamon {
                     }
                 }
             }
-        }
 
         else {
             L_stop()
             Lmoter = 1
         }        
-            
+        }
+
     })
 
 
