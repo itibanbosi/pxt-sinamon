@@ -446,7 +446,7 @@ namespace sinamon {
             pins.analogWritePin(AnalogPin.P13, 0)
 
             pins.analogWritePin(AnalogPin.P15, 0)
-            pins.analogWritePin(AnalogPin.P16, Power * 10.23 * cond / 100)
+            pins.analogWritePin(AnalogPin.P16, Power * 10.23 )
 
 
         }
