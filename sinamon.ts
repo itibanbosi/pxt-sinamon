@@ -330,7 +330,7 @@ namespace sinamon {
                 if (P1count + 10 < Math.abs(objectP1)) {
                     R_power = 300
                     if (P0count > P1count) {
-                        R_power = 100
+                        R_power = 400
                     }
                     if (objectP1 == Math.abs(objectP1)) {
                         R_forward()
@@ -367,7 +367,7 @@ namespace sinamon {
                 if (P0count + 10 < Math.abs(objectP0)) {
                     L_Power = 300
                     if (P0count < P1count) {
-                        L_Power = 100
+                        L_Power = 400
                     }
                     if (objectP0 == Math.abs(objectP0)) {
                         L_forward()
