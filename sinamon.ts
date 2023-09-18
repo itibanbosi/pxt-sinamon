@@ -433,11 +433,24 @@ namespace sinamon {
     export function moving3(Power: number ,cond:number): void {
         pins.setEvents(DigitalPin.P6, PinEventType.None)
         pins.setEvents(DigitalPin.P7, PinEventType.None)
-        pins.analogWritePin(AnalogPin.P2, Power * 10.23*cond/100)
-        pins.analogWritePin(AnalogPin.P13, 0)
+        
+        if (cond<0){
+            pins.analogWritePin(AnalogPin.P2, Power * 10.23 )
+            pins.analogWritePin(AnalogPin.P13, 0)
 
-        pins.analogWritePin(AnalogPin.P15, 0)
-        pins.analogWritePin(AnalogPin.P16, Power * 10.23 * cond / 100)
+            pins.analogWritePin(AnalogPin.P15, 0)
+            pins.analogWritePin(AnalogPin.P16, Power * 10.23 *Math.abs(cond)/50)
+        }
+        else{
+            pins.analogWritePin(AnalogPin.P2, Power * 10.23 * Math.abs(cond) / 50 )
+            pins.analogWritePin(AnalogPin.P13, 0)
+
+            pins.analogWritePin(AnalogPin.P15, 0)
+            pins.analogWritePin(AnalogPin.P16, Power * 10.23 * cond / 100)
+
+
+        }
+
     }
 
 
