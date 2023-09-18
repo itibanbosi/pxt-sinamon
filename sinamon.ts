@@ -435,19 +435,19 @@ namespace sinamon {
         pins.setEvents(DigitalPin.P7, PinEventType.None)
         
         if (cond<0){
-            pins.analogWritePin(AnalogPin.P2, Power * 10.23 )
+            pins.analogWritePin(AnalogPin.P2, Power * 10.23 * (50 - Math.abs(cond)) / 50)
             pins.analogWritePin(AnalogPin.P13, 0)
 
             pins.analogWritePin(AnalogPin.P15, 0)
-            pins.analogWritePin(AnalogPin.P16, Power * 10.23 *(50-Math.abs(cond))/50)
+            pins.analogWritePin(AnalogPin.P16, Power * 10.23)
         }
         else{
-            pins.analogWritePin(AnalogPin.P2, Power * 10.23 * (50-Math.abs(cond)) / 50 )
+
+            pins.analogWritePin(AnalogPin.P2, Power * 10.23)
             pins.analogWritePin(AnalogPin.P13, 0)
 
             pins.analogWritePin(AnalogPin.P15, 0)
-            pins.analogWritePin(AnalogPin.P16, Power * 10.23 )
-
+            pins.analogWritePin(AnalogPin.P16, Power * 10.23 * (50 - Math.abs(cond)) / 50)
 
         }
 
