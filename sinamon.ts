@@ -439,10 +439,10 @@ namespace sinamon {
             pins.analogWritePin(AnalogPin.P13, 0)
 
             pins.analogWritePin(AnalogPin.P15, 0)
-            pins.analogWritePin(AnalogPin.P16, Power * 10.23 *Math.abs(cond)/50)
+            pins.analogWritePin(AnalogPin.P16, Power * 10.23 *(50-Math.abs(cond))/50)
         }
         else{
-            pins.analogWritePin(AnalogPin.P2, Power * 10.23 * Math.abs(cond) / 50 )
+            pins.analogWritePin(AnalogPin.P2, Power * 10.23 * (50-Math.abs(cond)) / 50 )
             pins.analogWritePin(AnalogPin.P13, 0)
 
             pins.analogWritePin(AnalogPin.P15, 0)
